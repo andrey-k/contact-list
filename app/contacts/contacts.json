@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1, 
+        "first_name": "David", 
+        "last_name": "Stone", 
+        "phone": "5402131615",
+        "email": "DavidBStone\u0040jourrapide.com"
+    }, 
+    {
+        "id": 2, 
+        "first_name": "Walter", 
+        "last_name": "Hinkle", 
+        "phone": "0440910046",
+        "email": "CarolCMeyer\u0040jourrapide.com"
+    }, 
+    {
+        "id": 3, 
+        "first_name": "Maria", 
+        "last_name": "Appleby", 
+        "phone": "0401670084",
+        "email": "MariaDAppleby\u0040teleworm.us"
+    }, 
+    {
+        "id": 4, 
+        "first_name": "Delores", 
+        "last_name": "Blais", 
+        "phone": "7039221451",
+        "email": "DeloresDBlais\u0040armyspy.com"
+    }, 
+    {
+        "id": 5, 
+        "first_name": "Carrie", 
+        "last_name": "Greer", 
+        "phone": "0505231426",
+        "email": "CarrieAGreer\u0040teleworm.us"
+    }, 
+    {
+        "id": 6, 
+        "first_name": "Margarita", 
+        "last_name": "Smith", 
+        "phone": "0460348036",
+        "email": "MargaritaJSmith\u0040armyspy.com"
+    }, 
+    {
+        "id": 7, 
+        "first_name": "Ted", 
+        "last_name": "Riley", 
+        "phone": "0426261051",
+        "email": "TedERiley\u0040jourrapide.com"
+    }, 
+    {
+        "id": 8, 
+        "first_name": "Alison", 
+        "last_name": "Box", 
+        "phone": "0505511911",
+        "email": "AlisonABox\u0040armyspy.com"
+    }, 
+    {
+        "id": 9, 
+        "first_name": "Ethel", 
+        "last_name": "Carroll", 
+        "phone": "0501114923",
+        "email": "EthelMCarroll\u0040rhyta.com"
+    }, 
+    {
+        "id": 10, 
+        "first_name": "Vasja", 
+        "last_name": "Pupkin", 
+        "phone": "+358453259577",
+        "email": "vasja.Pupkin\u0040gmail.com"
+    }
+]

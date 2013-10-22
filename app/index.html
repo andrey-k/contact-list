@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 9]> <html class="no-js lt-ie9" lang="en" data-ng-app="contactList"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" data-ng-app="contactList"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="home work from F-secure">
+    <meta name="author" content="Andrey Kramarev">
+    
+    <title>Contact list app</title>
+
+    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="libs/html5shiv.js"></script>
+    <script src="libs/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-ng-controller="ContactListCtrl">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" data-ng-click="fullListContacts()" href="#"><span class="glyphicon glyphicon-user"></span>Contacts</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a id="list-all" data-ng-click="fullListContacts()" href="#">List all</a></li>
+                <li><a id="add-new" data-ng-click="addContactForm()" href="#">Add new</a></li>
+            </ul>
+         
+            <div class="col-sm-6 col-md-3 pull-right">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input id="search-input" type="text" class="form-control" placeholder="Search" data-ng-model="query">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" data-ng-click="searchContacts(query)"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+         <alert data-ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        <div class="full-list" data-ng-show="fullList">
+            <div class="page-header">
+                <h1 >Contact list <small>simple app to store contacts</small></h1>
+            </div>
+            <div class="contact-list">
+                <div class="row list-header">
+                    <div class="col-xs-1">#</div>
+                    <div class="col-xs-5 col-sm-2">First name</div>
+                    <div class="col-xs-6 col-sm-2">Last name</div>
+                    <div class="col-xs-offset-1 col-sm-offset-0 col-xs-11 col-sm-2">Phone</div>
+                    <div class="col-xs-offset-1 col-sm-offset-0 col-xs-11 col-sm-4">E-mail</div>
+                    <div class="actions hidden-xs col-sm-1">Actions</div>
+                </div>
+
+            <div class="row" data-ng-repeat="contact in contacts | filter:query | orderBy:['first_name', 'last_name']" data-ng-click="showContactInfo(contact)">
+                <div class="col-xs-1">{{$index + 1}}</div>
+                    <div class="col-xs-5 col-sm-2">{{ contact.first_name }}</div>
+                    <div class="col-xs-6 col-sm-2">{{ contact.last_name }}</div>
+                    <div class="col-xs-offset-1 col-sm-offset-0 col-xs-11 col-sm-2">{{ contact.phone }}</div>
+                    <div class="col-xs-offset-1 col-sm-offset-0 col-xs-11 col-sm-4">{{ contact.email }}</div>
+                    <div class="actions hidden-xs col-sm-1"><span class="glyphicon glyphicon-edit" data-popover="Edit" data-popover-trigger="mouseenter" data-ng-click="editContactForm($event, contact)"></span><span class="glyphicon glyphicon-remove" data-popover="Delete" data-popover-trigger="mouseenter" data-ng-click="confirmDelete($event, contact)"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-view" data-ng-show="details">
+            <div class="page-header">
+                <h1>Contact <small>full info of the selected contact</small></h1>
+            </div>
+            <div class="contact-info border-box">
+                <form class="form-horizontal" role="form" novalidate class="css-form">
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-first-name">First name:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <p class="form-control-static">{{ contactDetails.first_name }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-last-name">Last name:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <p class="form-control-static">{{ contactDetails.last_name }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-phone">Phone:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <p class="form-control-static">{{ contactDetails.phone }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-email">Email:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <p class="form-control-static">{{ contactDetails.email }}</p>
+                        </div>
+                    </div>
+                    <div class="pager">
+                        <button type="submit"  data-ng-click="confirmDelete($event, contactDetails)" class="delete-btn btn btn-default pull-left">Delete</button>
+                        <button class="edit-btn btn btn-default pull-right" data-ng-click="editContactForm($event, contactDetails)">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="form-view" data-ng-show="contactForm">
+            <div class="page-header">
+                <h1>Contact <small>edit contact</small></h1>
+            </div>
+
+            <div class="contact-info border-box">
+                <form class="form-horizontal" name="form" role="form" novalidate>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-first-name">First name:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="input-group">
+                                <span class="glyphicon glyphicon-user input-group-addon"></span>
+                                <input id="contact-first-name" class="form-control" type="text" name="first-name" placeholder="Enter first name" required data-ng-model="contact.first_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-last-name">Last name:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="input-group">
+                                <span class="glyphicon glyphicon-user input-group-addon"></span>
+                                <input id="contact-last-name" class="form-control" type="text" name="last-name" placeholder="Enter last name" required data-ng-model="contact.last_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-phone">Phone:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="input-group">
+                                <span class="glyphicon glyphicon-earphone input-group-addon"></span>
+                                <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="Enter phone number" required data-ng-model="contact.phone">
+                            </div>
+                            <div class="has-error" data-ng-show="form.phone.$dirty && (isInvalidNumber() || form.phone.$error.required)" role="alert">
+                                <ul class="help-block">
+                                    <li>Please enter phone number in format XXXXXXXXX or +XXXXXXXXX</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group control-group">
+                        <label class="col-xs-3 control-label" for="contact-email">Email:</label>
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="input-group">
+                                <span class="glyphicon glyphicon-envelope input-group-addon"></span>
+                                <input id="contact-email" class="form-control" type="email" name="email" placeholder="Enter email" required data-ng-model="contact.email">
+                            </div>
+                            <div class="has-error" data-ng-show="form.email.$dirty && form.email.$invalid" role="alert">
+                                <ul class="help-block">
+                                    <li data-ng-show="form.email.$error.required">Please enter email.</li>
+                                    <li data-ng-show="form.email.$error.email">This is not a valid email.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <p class="help-text col-xs-offset-3 col-sm-offset-8">All fields are required</p>
+                    <div class="pager">
+                        <button id="delete"  data-ng-click="confirmDelete($event, contact)" class="delete-btn btn btn-default pull-left" data-ng-show="contact.id">Delete</button>
+                        <button id="save" data-ng-click="saveEditedContact(contact)" class="btn btn-default pull-right" data-ng-show="contact.id" data-ng-disabled="form.$invalid || isUnchanged() || isInvalidNumber()">Save</button>
+                        <button id="add" data-ng-click="addNewContact(contact)" class="btn btn-default pull-right" data-ng-hide="contact.id" data-ng-disabled="form.$invalid || isInvalidNumber()">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toTop">&#x25B2;</div>
+    
+    <script type="text/ng-template" id="confirmationDialog.html">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirmation dialog</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to delete this contact?</p>
+                    <p>{{ activeContact.first_name }} {{ activeContact.last_name }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="libs/ui-bootstrap-tpls-0.6.0.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/base.js"></script>
+</body>
+</html>

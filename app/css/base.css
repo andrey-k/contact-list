@@ -1,0 +1,23 @@
+body{padding-top:60px;padding-bottom:40px}
+.nav,.pagination,.carousel a{cursor:pointer}
+.popover.top{margin-top:-5px}
+.navbar-nav>li>a{line-height:23px}
+.contact-list .list-header{border-top:0;border-bottom:2px solid #ddd;font-weight:bold}
+.contact-list>div{padding:8px;border-top:1px solid #ddd}.contact-list>div:nth-child(even){background-color:#f9f9f9}
+.contact-list>div .glyphicon-edit{margin-right:15px}
+.contact-list .row div:not(.actions){overflow:hidden}
+.contact-list div:not(.list-header).row:hover{background-color:#ddd;cursor:pointer}
+.col-xs-offset-1{margin-left:8.333333333333332%}
+.col-xs-offset-3{margin-left:25%}
+div[class*='col-']{padding-right:0}
+#toTop{-webkit-border-radius:8px;-webkit-background-clip:padding-box;-moz-border-radius:8px;-moz-background-clip:padding;border-radius:8px;background-clip:padding-box;position:fixed;right:10px;bottom:10px;display:none;padding:5px;width:30px;border:1px solid #ddd;background:none repeat scroll 0 0 #ddd;color:#000;text-align:center;font-weight:bold;font-family:verdana;cursor:pointer}
+.border-box{background-color:#fff;border-width:1px;border-color:#ddd;-webkit-border-radius:4px;-webkit-background-clip:padding-box;-moz-border-radius:4px;-moz-background-clip:padding;border-radius:4px;background-clip:padding-box;box-shadow:none;border-style:solid;padding:15px;margin:0}
+.pager{margin:15px}
+.glyphicon.input-group-addon{top:-0.5px}
+.modal{display:block}
+.fade.modal-dialog{-webkit-transform:translate(0, -25%);-moz-transform:translate(0, -25%);-o-transform:translate(0, -25%);-ms-transform:translate(0, -25%);transform:translate(0, -25%);-webkit-transition:-webkit-transform 0.3s ease-out;-moz-transition:-moz-transform 0.3s ease-out;-o-transition:-o-transform 0.3s ease-out;-ms-transition:-ms-transform 0.3s ease-out;transition:transform 0.3s ease-out}
+.in.modal-dialog{-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-o-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}
+.modal-dialog{z-index:1050;width:auto;padding:10px;margin-right:auto;margin-left:auto}
+.alert{margin-top:10px;margin-bottom:10px}
+.page-header{margin-top:20px}
+@media (min-width:768px){.col-sm-offset-0{margin-left:0}}@media screen and (min-width:768px){.col-sm-offset-0{margin-left:0} .modal-dialog{right:auto;left:50%;width:600px;padding-top:30px;padding-bottom:30px} .modal-content{-webkit-box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);-moz-box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);box-shadow:0 5px 15px rgba(0, 0, 0, 0.5)}}

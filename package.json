@@ -1,0 +1,11 @@
+{
+  "name": "contact-list",
+  "description": "A simple contact list",
+  "devDependencies": {
+    "phantomjs": "*",
+    "karma": "*",
+    "karma-junit-reporter": "~0.1.0",
+    "karma-jasmine": "*",
+    "karma-ng-scenario": "*"
+  }
+}
