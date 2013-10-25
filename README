@@ -1,2 +1,4 @@
-Contact list app implemented with angular.js and Bootstrap 3. Based on angular-seed.
+Browser based contact list app implemented with angular.js and Bootstrap 3. Based on angular-seed.
+
+Application stores contact information (first and last name, phone number and email address). There is posibility for adding and deleting contact and showing all contacts that are stored. There is also search box to search users.
 
